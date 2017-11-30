@@ -1,0 +1,305 @@
+{
+  "storage": {
+    "name": "Veliki set Padataka",
+    "packages": [
+      {
+        "name": "Serijske Datoteke",
+        "entities": [
+          {
+            "name:": "Nastavni Predmeti",
+            "extension": "ser",
+            "path": "NastavniPredmeti.txt",
+            "attributes": [
+              {
+                "name": "OZNAKA_PLANA",
+                "description": "attributeField",
+                "type": "TYPE_CHAR",
+                "length": "2"
+              },
+              {
+                "name": "SIFRA_PREDMETA",
+                "description": "attributeField2",
+                "type": "TYPE_VARCHAR",
+                "length": "5"
+              },
+              {
+                "name": "NAZIV_PREDMETA",
+                "description": "attributeField3",
+                "type": "TYPE_VARCHAR",
+                "length": "80"
+              },
+              {
+                "name": "TRAJE_SEMESTARA",
+                "description": "attributeField4",
+                "type": "TYPE_NUMERIC",
+                "length": "2"
+              },
+              {
+                "name": "BROJ_KREDITA",
+                "description": "attributeField5",
+                "type": "TYPE_NUMERIC",
+                "length": "3"
+              }
+            ]
+          },
+          {
+            "name": "Plan Studijskog Programa",
+            "extension": "ser",
+            "path": "PlanStudijskogPrograma.txt",
+            "attributes": [
+              {
+                "name": "OZNAKA_PROGRAMA",
+                "description": "attributeField",
+                "type": "TYPE_CHAR",
+                "length": "4"
+              },
+              {
+                "name": "OZNAKA_PLANA",
+                "description": "attributeField2",
+                "type": "TYPE_CHAR",
+                "length": "2"
+              },
+              {
+                "name": "SIFRA_PREDMETA",
+                "description": "attributeField3",
+                "type": "TYPE_VARCHAR",
+                "length": "5"
+              },
+              {
+                "name": "GODINA_PREDMETA",
+                "description": "attributeField4",
+                "type": "TYPE_NUMERIC",
+                "length": "1"
+              },
+              {
+                "name": "SEMESTAR_PREDMETA",
+                "description": "attributeField5",
+                "type": "TYPE_NUMERIC",
+                "length": "2"
+              }
+            ]
+          },
+          {
+            "name": "Studenti",
+            "extension": "ser",
+            "path": "Studenti.txt",
+            "attributes": [
+              {
+                "name": "STRUKA",
+                "description": "attributeField",
+                "type": "TYPE_CHAR",
+                "length": "1"
+              },
+              {
+                "name": "BROJ INDEKSA",
+                "description": "attributeField2",
+                "type": "TYPE_VARCHAR",
+                "length": "6"
+              },
+              {
+                "name": "PREZIME",
+                "description": "attributeField3",
+                "type": "TYPE_VARCHAR",
+                "length": "20"
+              },
+              {
+                "name": "IME RODITELJA",
+                "description": "attributeField4",
+                "type": "TYPE_VARCHAR",
+                "length": "20"
+              },
+              {
+                "name": "IME",
+                "description": "attributeField5",
+                "type": "TYPE_VARCHAR",
+                "length": "20"
+              },
+              {
+                "name": "POL",
+                "description": "attributeField6",
+                "type": "TYPE_CHAR",
+                "length": "1"
+              },
+              {
+                "name": "JMBG",
+                "description": "attributeField7",
+                "type": "TYPE_CHAR",
+                "length": "13"
+              },
+              {
+                "name": "DATUM RODJENJA",
+                "description": "attributeField8",
+                "type": "TYPE_DATETIME",
+                "length": "25"
+              },
+              {
+                "name": "APrebivaLSISTED",
+                "description": "attributeField9",
+                "type": "TYPE_VARCHAR",
+                "length": "80"
+              },
+              {
+                "name": "TELEFON",
+                "description": "attributeField10",
+                "type": "TYPE_VARCHAR",
+                "length": "20"
+              }
+            ]
+          },
+          {
+            "name": "Studijski Programi",
+            "extension": "ser",
+            "path": "StudijskiProgrami.txt",
+            "attributes": [
+              {
+                "name": "OZNAKA_PROGRAMA",
+                "description": "attributeField",
+                "type": "TYPE_CHAR",
+                "length": "4"
+              },
+              {
+                "name": "NAZIV_KOJI_SE_STICE",
+                "description": "attributeField2",
+                "type": "TYPE_VARCHAR",
+                "length": "80"
+              },
+              {
+                "name": "NAZIV PROGRAMA",
+                "description": "attributeField3",
+                "type": "TYPE_VARCHAR",
+                "length": "80"
+              }
+            ]
+          },
+          {
+            "name": "Tok Studija",
+            "extension": "ser",
+            "path": "TokStudija.txt",
+            "attributes": [
+              {
+                "name": "STRUKA",
+                "description": "attributeField",
+                "type": "TYPE_CHAR",
+                "length": "1"
+              },
+              {
+                "name": "BROJ INDEKSA",
+                "description": "attributeField2",
+                "type": "TYPE_VARCHAR",
+                "length": "6"
+              },
+              {
+                "name": "OZNAKA_PROGRAMA",
+                "description": "attributeField3",
+                "type": "TYPE_CHAR",
+                "length": "4"
+              },
+              {
+                "name": "SKOLSKA_GODINA",
+                "description": "attributeField3",
+                "type": "TYPE_CHAR",
+                "length": "4"
+              },
+              {
+                "name": "GODINA_STUDIJA",
+                "description": "attributeField4",
+                "type": "TYPE_NUMERIC",
+                "length": "1"
+              },
+              {
+                "name": "UPISUJE_PO_PLANU",
+                "description": "attributeField5",
+                "type": "TYPE_CHAR",
+                "length": "2"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Sekvencijalne Datoteke",
+        "entities": [
+          {
+            "name": "Nastavni Predmeti",
+            "extension": "sek",
+            "path": "NastavniPredmeti.stxt",
+            "attributes": [
+              {
+                "name": "OZNAKA_PLANA",
+                "description": "attributeField",
+                "type": "TYPE_CHAR",
+                "length": "2"
+              },
+              {
+                "name": "SIFRA_PREDMETA",
+                "description": "attributeField2",
+                "type": "TYPE_VARCHAR",
+                "length": "5"
+              },
+              {
+                "name": "NAZIV_PREDMETA",
+                "description": "attributeField3",
+                "type": "TYPE_VARCHAR",
+                "length": "80"
+              },
+              {
+                "name": "TRAJE_SEMESTARA",
+                "description": "attributeField4",
+                "type": "TYPE_NUMERIC",
+                "length": "2"
+              },
+              {
+                "name": "BROJ_KREDITA",
+                "description": "attributeField5",
+                "type": "TYPE_NUMERIC",
+                "length": "3"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Indeks - Sekvencijalne Datoteke",
+        "entities": [
+          {
+            "name": "Nastavni Predmeti",
+            "extension": "ind",
+            "path": "NastavniPredmeti.stxt",
+            "attributes": [
+              {
+                "name": "OZNAKA_PLANA",
+                "description": "attributeField",
+                "type": "TYPE_CHAR",
+                "length": "2"
+              },
+              {
+                "name": "SIFRA_PREDMETA",
+                "description": "attributeField2",
+                "type": "TYPE_VARCHAR",
+                "length": "5"
+              },
+              {
+                "name": "NAZIV_PREDMETA",
+                "description": "attributeField3",
+                "type": "TYPE_VARCHAR",
+                "length": "80"
+              },
+              {
+                "name": "TRAJE_SEMESTARA",
+                "description": "attributeField4",
+                "type": "TYPE_NUMERIC",
+                "length": "2"
+              },
+              {
+                "name": "BROJ_KREDITA",
+                "description": "attributeField5",
+                "type": "TYPE_NUMERIC",
+                "length": "3"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

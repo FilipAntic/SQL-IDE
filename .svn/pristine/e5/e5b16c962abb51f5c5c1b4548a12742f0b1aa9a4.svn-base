@@ -1,0 +1,50 @@
+package controller;
+
+import java.util.ArrayList;
+
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+import javax.swing.table.DefaultTableModel;
+
+import app.MainFrame;
+import model.Attribute;
+import model.Entity;
+import model.InfTableModel;
+import view.InfTable;
+import view.RightPanel;
+
+public class InfRowFilter implements ListSelectionListener {
+
+	@Override
+	public void valueChanged(ListSelectionEvent e) {
+		RightPanel rightPanel = MainFrame.getInstance().getInfHorizontalSplitPane().getInfVerticalSplitPane()
+				.getRightUpperPanel().getSelectedPanel();
+		InfTable model = (InfTable) rightPanel.getEntityContainer().getTable();
+		Entity entity = rightPanel.getEntityContainer().getEntity();
+		Object[] array = new Object[model.getModel().getColumnCount()];
+
+		for (int i = 0; i < model.getModel().getColumnCount(); i++) {
+			Object selectedRow = model.getValueAt(model.getSelectedRow(), i);
+			array[i] = selectedRow;
+
+		}
+
+
+
+	}
+
+	public ArrayList<String> getPrimaryKeys(Entity entity,Object[] array) {
+		ArrayList<String> primaryKeys = new ArrayList<>();
+		int i = 0;
+		for (Attribute a : entity.getAttributes()) {
+
+			if (a.isPrimaryKey()) {
+				primaryKeys.add((String) array[i]);
+			}
+			i++;
+		}
+
+		return primaryKeys;
+	}
+
+}

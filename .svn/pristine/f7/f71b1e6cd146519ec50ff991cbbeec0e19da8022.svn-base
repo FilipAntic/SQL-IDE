@@ -1,0 +1,15 @@
+package files;
+
+import java.util.ArrayList;
+
+public interface InfFile {
+
+	public void add();
+
+	public void change();
+
+	public void delete();
+
+	public void find(ArrayList<String> list);
+
+}

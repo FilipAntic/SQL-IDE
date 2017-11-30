@@ -1,0 +1,3 @@
+"Battle of the Vowels:Hawaii vs Gronzy".replaceAll("[_]","")
+equals ignore case 
+trim()

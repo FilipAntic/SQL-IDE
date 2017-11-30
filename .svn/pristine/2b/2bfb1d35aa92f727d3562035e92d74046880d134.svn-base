@@ -1,0 +1,1426 @@
+{
+  "storage": {
+    "name": "Veliki set Padataka",
+    "packages": [
+      {
+        "name": "Serijske Datoteke",
+        "entities": [
+          {
+            "name": "Nastavni Predmeti",
+            "relation": "",
+            "relationName": "",
+            "extension": "ser",
+            "path": "resources/VelikiSetPodataka/SerijskeDatoteke/NastavniPredmeti.txt",
+            "attributes": [
+              {
+                "name": "OZNAKA_PLANA",
+                "description": "attributeField",
+                "type": "TYPE_CHAR",
+                "length": "2",
+                "primaryKey": "false"
+              },
+              {
+                "name": "SIFRA_PREDMETA",
+                "description": "attributeField2",
+                "type": "TYPE_VARCHAR",
+                "length": "5",
+                "primaryKey": "false"
+              },
+              {
+                "name": "NAZIV_PREDMETA",
+                "description": "attributeField3",
+                "type": "TYPE_VARCHAR",
+                "length": "80",
+                "primaryKey": "false"
+              },
+              {
+                "name": "TRAJE_SEMESTARA",
+                "description": "attributeField4",
+                "type": "TYPE_NUMERIC",
+                "length": "2",
+                "primaryKey": "false"
+              },
+              {
+                "name": "BROJ_KREDITA",
+                "description": "attributeField5",
+                "type": "TYPE_NUMERIC",
+                "length": "3",
+                "primaryKey": "false"
+              }
+            ]
+          },
+          {
+            "name": "Plan Studijskog Programa",
+            "relation": "",
+            "relationName": "",
+            "extension": "ser",
+            "path": "resources/VelikiSetPodataka/SerijskeDatoteke/PlanStudijskogPrograma.txt",
+            "attributes": [
+              {
+                "name": "OZNAKA_PROGRAMA",
+                "description": "attributeField",
+                "type": "TYPE_CHAR",
+                "length": "4",
+                "primaryKey": "false"
+              },
+              {
+                "name": "OZNAKA_PLANA",
+                "description": "attributeField2",
+                "type": "TYPE_CHAR",
+                "length": "2",
+                "primaryKey": "false"
+              },
+              {
+                "name": "SIFRA_PREDMETA",
+                "description": "attributeField3",
+                "type": "TYPE_VARCHAR",
+                "length": "5",
+                "primaryKey": "false"
+              },
+              {
+                "name": "GODINA_PREDMETA",
+                "description": "attributeField4",
+                "type": "TYPE_NUMERIC",
+                "length": "1",
+                "primaryKey": "false"
+              },
+              {
+                "name": "SEMESTAR_PREDMETA",
+                "description": "attributeField5",
+                "type": "TYPE_NUMERIC",
+                "length": "2",
+                "primaryKey": "false"
+              }
+            ]
+          },
+          {
+            "name": "Studenti",
+            "relation": "",
+            "relationName": "",
+            "extension": "ser",
+            "path": "resources/VelikiSetPodataka/SerijskeDatoteke/Studenti.txt",
+            "attributes": [
+              {
+                "name": "STRUKA",
+                "description": "attributeField",
+                "type": "TYPE_CHAR",
+                "length": "1",
+                "primaryKey": "false"
+              },
+              {
+                "name": "BROJ INDEKSA",
+                "description": "attributeField2",
+                "type": "TYPE_VARCHAR",
+                "length": "6",
+                "primaryKey": "false"
+              },
+              {
+                "name": "PREZIME",
+                "description": "attributeField3",
+                "type": "TYPE_VARCHAR",
+                "length": "20",
+                "primaryKey": "false"
+              },
+              {
+                "name": "IME RODITELJA",
+                "description": "attributeField4",
+                "type": "TYPE_VARCHAR",
+                "length": "20",
+                "primaryKey": "false"
+              },
+              {
+                "name": "IME",
+                "description": "attributeField5",
+                "type": "TYPE_VARCHAR",
+                "length": "20",
+                "primaryKey": "false"
+              },
+              {
+                "name": "POL",
+                "description": "attributeField6",
+                "type": "TYPE_CHAR",
+                "length": "1",
+                "primaryKey": "false"
+              },
+              {
+                "name": "JMBG",
+                "description": "attributeField7",
+                "type": "TYPE_CHAR",
+                "length": "13",
+                "primaryKey": "false"
+              },
+              {
+                "name": "DATUM RODJENJA",
+                "description": "attributeField8",
+                "type": "TYPE_DATETIME",
+                "length": "25",
+                "primaryKey": "false"
+              },
+              {
+                "name": "APrebivaLSISTED",
+                "description": "attributeField9",
+                "type": "TYPE_VARCHAR",
+                "length": "80",
+                "primaryKey": "false"
+              },
+              {
+                "name": "TELEFON",
+                "description": "attributeField10",
+                "type": "TYPE_VARCHAR",
+                "length": "20",
+                "primaryKey": "false"
+              }
+            ]
+          },
+          {
+            "name": "Studijski Programi",
+            "relation": "",
+            "relationName": "",
+            "extension": "ser",
+            "path": "resources/VelikiSetPodataka/SerijskeDatoteke/StudijskiProgrami.txt",
+            "attributes": [
+              {
+                "name": "OZNAKA_PROGRAMA",
+                "description": "attributeField",
+                "type": "TYPE_CHAR",
+                "length": "4",
+                "primaryKey": "false"
+              },
+              {
+                "name": "NAZIV_KOJI_SE_STICE",
+                "description": "attributeField2",
+                "type": "TYPE_VARCHAR",
+                "length": "80",
+                "primaryKey": "false"
+              },
+              {
+                "name": "NAZIV PROGRAMA",
+                "description": "attributeField3",
+                "type": "TYPE_VARCHAR",
+                "length": "80",
+                "primaryKey": "false"
+              }
+            ]
+          },
+          {
+            "name": "Tok Studija",
+            "relation": "",
+            "relationName": "",
+            "extension": "ser",
+            "path": "resources/VelikiSetPodataka/SerijskeDatoteke/TokStudija.txt",
+            "attributes": [
+              {
+                "name": "STRUKA",
+                "description": "attributeField",
+                "type": "TYPE_CHAR",
+                "length": "1",
+                "primaryKey": "false"
+              },
+              {
+                "name": "BROJ INDEKSA",
+                "description": "attributeField2",
+                "type": "TYPE_VARCHAR",
+                "length": "6",
+                "primaryKey": "false"
+              },
+              {
+                "name": "OZNAKA_PROGRAMA",
+                "description": "attributeField3",
+                "type": "TYPE_CHAR",
+                "length": "4",
+                "primaryKey": "false"
+              },
+              {
+                "name": "SKOLSKA_GODINA",
+                "description": "attributeField3",
+                "type": "TYPE_CHAR",
+                "length": "4",
+                "primaryKey": "false"
+              },
+              {
+                "name": "GODINA_STUDIJA",
+                "description": "attributeField4",
+                "type": "TYPE_NUMERIC",
+                "length": "1",
+                "primaryKey": "false"
+              },
+              {
+                "name": "UPISUJE_PO_PLANU",
+                "description": "attributeField5",
+                "type": "TYPE_CHAR",
+                "length": "2",
+                "primaryKey": "false"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Sekvencijalne Datoteke",
+        "entities": [
+          {
+            "name": "Nastavni Predmeti",
+            "relation": "",
+            "relationName": "",
+            "extension": "sek",
+            "path": "resources/VelikiSetPodataka/SekvencijalneDatoteke/NastavniPredmeti.stxt",
+            "attributes": [
+              {
+                "name": "OZNAKA_PLANA",
+                "description": "attributeField",
+                "type": "TYPE_CHAR",
+                "length": "2",
+                "primaryKey": "true"
+              },
+              {
+                "name": "SIFRA_PREDMETA",
+                "description": "attributeField2",
+                "type": "TYPE_VARCHAR",
+                "length": "5",
+                "primaryKey": "true"
+              },
+              {
+                "name": "NAZIV_PREDMETA",
+                "description": "attributeField3",
+                "type": "TYPE_VARCHAR",
+                "length": "80",
+                "primaryKey": "false"
+              },
+              {
+                "name": "TRAJE_SEMESTARA",
+                "description": "attributeField4",
+                "type": "TYPE_NUMERIC",
+                "length": "2",
+                "primaryKey": "false"
+              },
+              {
+                "name": "BROJ_KREDITA",
+                "description": "attributeField5",
+                "type": "TYPE_NUMERIC",
+                "length": "3",
+                "primaryKey": "false"
+              }
+            ]
+          },
+          {
+            "name": "Plan Studijskog Programa",
+            "relation": "",
+            "relationName": "",
+            "extension": "sek",
+            "path": "resources/VelikiSetPodataka/SekvencijalneDatoteke/PlanStudijskogPrograma.stxt",
+            "attributes": [
+              {
+                "name": "OZNAKA_PROGRAMA",
+                "description": "attributeField",
+                "type": "TYPE_CHAR",
+                "length": "4",
+                "primaryKey": "true"
+              },
+              {
+                "name": "OZNAKA_PLANA",
+                "description": "attributeField2",
+                "type": "TYPE_CHAR",
+                "length": "2",
+                "primaryKey": "true"
+              },
+              {
+                "name": "SIFRA_PREDMETA",
+                "description": "attributeField3",
+                "type": "TYPE_VARCHAR",
+                "length": "5",
+                "primaryKey": "true"
+              },
+              {
+                "name": "GODINA_PREDMETA",
+                "description": "attributeField4",
+                "type": "TYPE_NUMERIC",
+                "length": "1",
+                "primaryKey": "false"
+              },
+              {
+                "name": "SEMESTAR_PREDMETA",
+                "description": "attributeField5",
+                "type": "TYPE_NUMERIC",
+                "length": "2",
+                "primaryKey": "false"
+              }
+            ]
+          },
+          {
+            "name": "Studenti",
+            "relationName": "Tok Studija",
+            "relation": "resources/VelikiSetPodataka/SekvencijalneDatoteke/TokStudija.stxt",
+            "extension": "sek",
+            "path": "resources/VelikiSetPodataka/SekvencijalneDatoteke/Studenti.stxt",
+            "attributes": [
+              {
+                "name": "STRUKA",
+                "description": "attributeField",
+                "type": "TYPE_CHAR",
+                "length": "1",
+                "primaryKey": "true"
+              },
+              {
+                "name": "BROJ INDEKSA",
+                "description": "attributeField2",
+                "type": "TYPE_VARCHAR",
+                "length": "6",
+                "primaryKey": "true"
+              },
+              {
+                "name": "PREZIME",
+                "description": "attributeField3",
+                "type": "TYPE_VARCHAR",
+                "length": "20",
+                "primaryKey": "false"
+              },
+              {
+                "name": "IME RODITELJA",
+                "description": "attributeField4",
+                "type": "TYPE_VARCHAR",
+                "length": "20",
+                "primaryKey": "false"
+              },
+              {
+                "name": "IME",
+                "description": "attributeField5",
+                "type": "TYPE_VARCHAR",
+                "length": "20",
+                "primaryKey": "false"
+              },
+              {
+                "name": "POL",
+                "description": "attributeField6",
+                "type": "TYPE_CHAR",
+                "length": "1",
+                "primaryKey": "false"
+              },
+              {
+                "name": "JMBG",
+                "description": "attributeField7",
+                "type": "TYPE_CHAR",
+                "length": "13",
+                "primaryKey": "false"
+              },
+              {
+                "name": "DATUM RODJENJA",
+                "description": "attributeField8",
+                "type": "TYPE_DATETIME",
+                "length": "25",
+                "primaryKey": "false"
+              },
+              {
+                "name": "APrebivaLSISTED",
+                "description": "attributeField9",
+                "type": "TYPE_VARCHAR",
+                "length": "80",
+                "primaryKey": "false"
+              },
+              {
+                "name": "TELEFON",
+                "description": "attributeField10",
+                "type": "TYPE_VARCHAR",
+                "length": "20",
+                "primaryKey": "false"
+              }
+            ]
+          },
+          {
+            "name": "Studijski Programi",
+            "relation": "",
+            "relationName": "",
+            "extension": "sek",
+            "path": "resources/VelikiSetPodataka/SekvencijalneDatoteke/StudijskiProgrami.stxt",
+            "attributes": [
+              {
+                "name": "OZNAKA_PROGRAMA",
+                "description": "attributeField",
+                "type": "TYPE_CHAR",
+                "length": "4",
+                "primaryKey": "true"
+              },
+              {
+                "name": "NAZIV_KOJI_SE_STICE",
+                "description": "attributeField2",
+                "type": "TYPE_VARCHAR",
+                "length": "80",
+                "primaryKey": "false"
+              },
+              {
+                "name": "NAZIV PROGRAMA",
+                "description": "attributeField3",
+                "type": "TYPE_VARCHAR",
+                "length": "80",
+                "primaryKey": "false"
+              }
+            ]
+          },
+          {
+            "name": "Tok Studija",
+            "relation": "resources/VelikiSetPodataka/SekvencijalneDatoteke/Studenti.stxt",
+            "relationName": "Studenti",
+            "extension": "sek",
+            "path": "resources/VelikiSetPodataka/SekvencijalneDatoteke/TokStudija.stxt",
+            "attributes": [
+              {
+                "name": "STRUKA",
+                "description": "attributeField",
+                "type": "TYPE_CHAR",
+                "length": "1",
+                "primaryKey": "true"
+              },
+              {
+                "name": "BROJ INDEKSA",
+                "description": "attributeField2",
+                "type": "TYPE_VARCHAR",
+                "length": "6",
+                "primaryKey": "true"
+              },
+              {
+                "name": "OZNAKA_PROGRAMA",
+                "description": "attributeField3",
+                "type": "TYPE_CHAR",
+                "length": "4",
+                "primaryKey": "true"
+              },
+              {
+                "name": "SKOLSKA_GODINA",
+                "description": "attributeField3",
+                "type": "TYPE_CHAR",
+                "length": "4",
+                "primaryKey": "true"
+              },
+              {
+                "name": "GODINA_STUDIJA",
+                "description": "attributeField4",
+                "type": "TYPE_NUMERIC",
+                "length": "1",
+                "primaryKey": "false"
+              },
+              {
+                "name": "UPISUJE_PO_PLANU",
+                "description": "attributeField5",
+                "type": "TYPE_CHAR",
+                "length": "2",
+                "primaryKey": "false"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Indeks - Sekvencijalne Datoteke",
+        "entities": [
+          {
+            "name": "Nastavni Predmeti",
+            "relation": "",
+            "relationName": "",
+            "extension": "ind",
+            "path": "resources/VelikiSetPodataka/IndeksSekvencijalneDatoteke/NastavniPredmeti.stxt",
+            "attributes": [
+              {
+                "name": "OZNAKA_PLANA",
+                "description": "attributeField",
+                "type": "TYPE_CHAR",
+                "length": "2",
+                "primaryKey": "true"
+              },
+              {
+                "name": "SIFRA_PREDMETA",
+                "description": "attributeField2",
+                "type": "TYPE_VARCHAR",
+                "length": "5",
+                "primaryKey": "true"
+              },
+              {
+                "name": "NAZIV_PREDMETA",
+                "description": "attributeField3",
+                "type": "TYPE_VARCHAR",
+                "length": "80",
+                "primaryKey": "false"
+              },
+              {
+                "name": "TRAJE_SEMESTARA",
+                "description": "attributeField4",
+                "type": "TYPE_NUMERIC",
+                "length": "2",
+                "primaryKey": "false"
+              },
+              {
+                "name": "BROJ_KREDITA",
+                "description": "attributeField5",
+                "type": "TYPE_NUMERIC",
+                "length": "3",
+                "primaryKey": "false"
+              }
+            ]
+          },
+          {
+            "name": "Plan Studijskog Programa",
+            "relation": "",
+            "relationName": "",
+            "extension": "ind",
+            "path": "resources/VelikiSetPodataka/IndeksSekvencijalneDatoteke/PlanStudijskogPrograma.stxt",
+            "attributes": [
+              {
+                "name": "OZNAKA_PROGRAMA",
+                "description": "attributeField",
+                "type": "TYPE_CHAR",
+                "length": "4",
+                "primaryKey": "true"
+              },
+              {
+                "name": "OZNAKA_PLANA",
+                "description": "attributeField2",
+                "type": "TYPE_CHAR",
+                "length": "2",
+                "primaryKey": "true"
+              },
+              {
+                "name": "SIFRA_PREDMETA",
+                "description": "attributeField3",
+                "type": "TYPE_VARCHAR",
+                "length": "5",
+                "primaryKey": "true"
+              },
+              {
+                "name": "GODINA_PREDMETA",
+                "description": "attributeField4",
+                "type": "TYPE_NUMERIC",
+                "length": "1",
+                "primaryKey": "false"
+              },
+              {
+                "name": "SEMESTAR_PREDMETA",
+                "description": "attributeField5",
+                "type": "TYPE_NUMERIC",
+                "length": "2",
+                "primaryKey": "false"
+              }
+            ]
+          },
+          {
+            "name": "Studenti",
+            "relation": "",
+            "relationName": "",
+            "extension": "ind",
+            "path": "resources/VelikiSetPodataka/IndeksSekvencijalneDatoteke/Studenti.stxt",
+            "attributes": [
+              {
+                "name": "STRUKA",
+                "description": "attributeField",
+                "type": "TYPE_CHAR",
+                "length": "1",
+                "primaryKey": "true"
+              },
+              {
+                "name": "BROJ INDEKSA",
+                "description": "attributeField2",
+                "type": "TYPE_VARCHAR",
+                "length": "6",
+                "primaryKey": "true"
+              },
+              {
+                "name": "PREZIME",
+                "description": "attributeField3",
+                "type": "TYPE_VARCHAR",
+                "length": "20",
+                "primaryKey": "false"
+              },
+              {
+                "name": "IME RODITELJA",
+                "description": "attributeField4",
+                "type": "TYPE_VARCHAR",
+                "length": "20",
+                "primaryKey": "false"
+              },
+              {
+                "name": "IME",
+                "description": "attributeField5",
+                "type": "TYPE_VARCHAR",
+                "length": "20",
+                "primaryKey": "false"
+              },
+              {
+                "name": "POL",
+                "description": "attributeField6",
+                "type": "TYPE_CHAR",
+                "length": "1",
+                "primaryKey": "false"
+              },
+              {
+                "name": "JMBG",
+                "description": "attributeField7",
+                "type": "TYPE_CHAR",
+                "length": "13",
+                "primaryKey": "false"
+              },
+              {
+                "name": "DATUM RODJENJA",
+                "description": "attributeField8",
+                "type": "TYPE_DATETIME",
+                "length": "25",
+                "primaryKey": "false"
+              },
+              {
+                "name": "APrebivaLSISTED",
+                "description": "attributeField9",
+                "type": "TYPE_VARCHAR",
+                "length": "80",
+                "primaryKey": "false"
+              },
+              {
+                "name": "TELEFON",
+                "description": "attributeField10",
+                "type": "TYPE_VARCHAR",
+                "length": "20",
+                "primaryKey": "false"
+              }
+            ]
+          },
+          {
+            "name": "Studijski Programi",
+            "relation": "",
+            "relationName": "",
+            "extension": "ind",
+            "path": "resources/VelikiSetPodataka/IndeksSekvencijalneDatoteke/StudijskiProgrami.stxt",
+            "attributes": [
+              {
+                "name": "OZNAKA_PROGRAMA",
+                "description": "attributeField",
+                "type": "TYPE_CHAR",
+                "length": "4",
+                "primaryKey": "true"
+              },
+              {
+                "name": "NAZIV_KOJI_SE_STICE",
+                "description": "attributeField2",
+                "type": "TYPE_VARCHAR",
+                "length": "80",
+                "primaryKey": "false"
+              },
+              {
+                "name": "NAZIV PROGRAMA",
+                "description": "attributeField3",
+                "type": "TYPE_VARCHAR",
+                "length": "80",
+                "primaryKey": "false"
+              }
+            ]
+          },
+          {
+            "name": "Tok Studija",
+            "relation": "",
+            "relationName": "",
+            "extension": "ind",
+            "path": "resources/VelikiSetPodataka/IndeksSekvencijalneDatoteke/TokStudija.stxt",
+            "attributes": [
+              {
+                "name": "STRUKA",
+                "description": "attributeField",
+                "type": "TYPE_CHAR",
+                "length": "1",
+                "primaryKey": "true"
+              },
+              {
+                "name": "BROJ INDEKSA",
+                "description": "attributeField2",
+                "type": "TYPE_VARCHAR",
+                "length": "6",
+                "primaryKey": "true"
+              },
+              {
+                "name": "OZNAKA_PROGRAMA",
+                "description": "attributeField3",
+                "type": "TYPE_CHAR",
+                "length": "4",
+                "primaryKey": "true"
+              },
+              {
+                "name": "SKOLSKA_GODINA",
+                "description": "attributeField3",
+                "type": "TYPE_CHAR",
+                "length": "4",
+                "primaryKey": "true"
+              },
+              {
+                "name": "GODINA_STUDIJA",
+                "description": "attributeField4",
+                "type": "TYPE_NUMERIC",
+                "length": "1",
+                "primaryKey": "false"
+              },
+              {
+                "name": "UPISUJE_PO_PLANU",
+                "description": "attributeField5",
+                "type": "TYPE_CHAR",
+                "length": "2",
+                "primaryKey": "false"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Baza",
+        "entities": [
+          {
+            "name": "Nabavka",
+            "relationName": "",
+            "path": "",
+            "relation": "Dokument nabavke",
+            "extension": "db",
+            "attributes": [
+              {
+                "name": "Sifra nabavke",
+                "type": "VARCHAR",
+                "description": "attributeField3",
+                "length": "5",
+                "primaryKey": "true"
+              },
+              {
+                "name": "Vrednost planirane nabavke",
+                "type": "INTEGER",
+                "description": "attributeField3",
+                "length": "0",
+                "primaryKey": "false"
+              },
+              {
+                "name": "Vrednost ostvarene nabavke",
+                "type": "INTEGER",
+                "description": "attributeField3",
+                "length": "0",
+                "primaryKey": "false"
+              },
+              {
+                "name": "Ukupan obim nabavke",
+                "type": "INTEGER",
+                "description": "attributeField3",
+                "length": "0",
+                "primaryKey": "false"
+              }
+            ]
+          },
+          {
+            "name": "Poslovna godina",
+            "relationName": "",
+            "path": "",
+            "relation": "Dokument nabavke",
+            "extension": "db",
+            "attributes": [
+              {
+                "name": "Porez na dobit",
+                "type": "INTEGER",
+                "description": "attributeField3",
+                "length": "0",
+                "primaryKey": "true"
+              }
+            ]
+          },
+          {
+            "name": "Baza",
+            "entities": [
+              {
+                "name": "Nabavka",
+                "relationName": "",
+                "path": "",
+                "relation": "Dokument nabavke",
+                "extension": "db",
+                "attributes": [
+                  {
+                    "name": "Sifra nabavke",
+                    "type": "VARCHAR",
+                    "description": "attributeField3",
+                    "length": "5",
+                    "primaryKey": "true"
+                  },
+                  {
+                    "name": "Vrednost planirane nabavke",
+                    "type": "INTEGER",
+                    "description": "attributeField3",
+                    "length": "0",
+                    "primaryKey": "false"
+                  },
+                  {
+                    "name": "Vrednost ostvarene nabavke",
+                    "type": "INTEGER",
+                    "description": "attributeField3",
+                    "length": "0",
+                    "primaryKey": "false"
+                  },
+                  {
+                    "name": "Ukupan obim nabavke",
+                    "type": "INTEGER",
+                    "description": "attributeField3",
+                    "length": "0",
+                    "primaryKey": "false"
+                  }
+                ]
+              },
+              {
+                "name": "Poslovni sistem",
+                "relationName": "",
+                "path": "",
+                "relation": "Nabavka",
+                "extension": "db",
+                "attributes": [
+                  {
+                    "name": "Identifikacija",
+                    "type": "INTEGER",
+                    "description": "attributeField3",
+                    "lenght": "0",
+                    "primaryKey": "true"
+                  },
+                  {
+                    "name": "Attribute_9",
+                    "type": "UNDEFINED",
+                    "description": "attributeField3",
+                    "lenght": "0",
+                    "primaryKey": "false"
+                  },
+                  {
+                    "name": "Attribute_10",
+                    "type": "UNDEFINED",
+                    "description": "attributeField3",
+                    "lenght": "0",
+                    "primaryKey": "false"
+                  },
+                  {
+                    "name": "Attribute_11",
+                    "type": "UNDEFINED",
+                    "description": "attributeField3",
+                    "lenght": "0",
+                    "primaryKey": "false"
+                  },
+                  {
+                    "name": "Attribute_12",
+                    "type": "UNDEFINED",
+                    "description": "attributeField3",
+                    "lenght": "0",
+                    "primaryKey": "false"
+                  }
+                ]
+              },
+              {
+                "name": "Roba",
+                "relationName": "",
+                "path": "",
+                "relation": "Stanje robe na skladistu",
+                "extension": "db",
+                "attributes": [
+                  {
+                    "name": "Oznaka",
+                    "type": "VARCHAR",
+                    "description": "attributeField3",
+                    "length": "0",
+                    "primaryKey": "true"
+                  },
+                  {
+                    "name": "Naziv",
+                    "type": "VARCHAR",
+                    "description": "attributeField3",
+                    "length": "80",
+                    "primaryKey": "false"
+                  }
+                ]
+              },
+              {
+                "name": "Poslovna godina",
+                "relationName": "",
+                "path": "",
+                "relation": "Poslovni sistem",
+                "extension": "db",
+                "attributes": [
+                  {
+                    "name": "Porez na dobit",
+                    "type": "LONGINTEGER",
+                    "description": "attributeField3",
+                    "lenght": "0",
+                    "primaryKey": "true"
+                  }
+                ]
+              },
+              {
+                "name": "Skladiste",
+                "relationName": "",
+                "path": "",
+                "relation": "Stanje robe na skladistu",
+                "extension": "db",
+                "attributes": [
+                  {
+                    "name": "Oznaka",
+                    "type": "VARCHAR",
+                    "description": "attributeField3",
+                    "lenght": "0",
+                    "primaryKey": "true"
+                  },
+                  {
+                    "name": "Velicina",
+                    "type": "INTEGER",
+                    "description": "attributeField3",
+                    "lenght": "0",
+                    "primaryKey": "false"
+                  },
+                  {
+                    "name": "Adresa",
+                    "type": "VARCHAR",
+                    "description": "attributeField3",
+                    "lenght": "80",
+                    "primaryKey": "false"
+                  },
+                  {
+                    "name": "Kapacitet",
+                    "type": "BOOLEAN",
+                    "description": "attributeField3",
+                    "lenght": "0",
+                    "primaryKey": "false"
+                  }
+                ]
+              },
+              {
+                "name": "Dokument nabavke",
+                "relationName": "",
+                "path": "",
+                "relation": "Dobavljac",
+                "extension": "db",
+                "attributes": [
+                  {
+                    "name": "Sifra fakture",
+                    "type": "VARCHAR",
+                    "description": "attributeField3",
+                    "lenght": "5",
+                    "primaryKey": "true"
+                  },
+                  {
+                    "name": "Vrednost robe",
+                    "type": "INTEGER",
+                    "description": "attributeField3",
+                    "lenght": "0",
+                    "primaryKey": "false"
+                  },
+                  {
+                    "name": "Zavisni troskovi nabavke",
+                    "type": "LONGINTEGER",
+                    "description": "attributeField3",
+                    "lenght": "0",
+                    "primaryKey": "false"
+                  },
+                  {
+                    "name": "Utovar",
+                    "type": "VARCHAR",
+                    "description": "attributeField3",
+                    "lenght": "80",
+                    "primaryKey": "false"
+                  },
+                  {
+                    "name": "Prevoz",
+                    "type": "VARCHAR",
+                    "description": "attributeField3",
+                    "lenght": "80",
+                    "primaryKey": "false"
+                  },
+                  {
+                    "name": "Istovar",
+                    "type": "VARCHAR",
+                    "description": "attributeField3",
+                    "lenght": "80",
+                    "primaryKey": "false"
+                  },
+                  {
+                    "name": "Nabavna vrednost artikla",
+                    "type": "LONGINTEGER",
+                    "description": "attributeField3",
+                    "lenght": "0",
+                    "primaryKey": "false"
+                  },
+                  {
+                    "name": "Nabavna cena artikla",
+                    "type": "INTEGER",
+                    "description": "attributeField3",
+                    "lenght": "0",
+                    "primaryKey": "false"
+                  },
+                  {
+                    "name": "PDV",
+                    "type": "INTEGER",
+                    "description": "attributeField3",
+                    "lenght": "0",
+                    "primaryKey": "false"
+                  },
+                  {
+                    "name": "Podaci o dobavljacu",
+                    "type": "VARCHAR",
+                    "description": "attributeField3",
+                    "lenght": "80",
+                    "primaryKey": "false"
+                  },
+                  {
+                    "name": "Datum nabavke",
+                    "type": "Date",
+                    "description": "attributeField3",
+                    "lenght": "0",
+                    "primaryKey": "false"
+                  }
+                ]
+              },
+              {
+                "name": "Magacin",
+                "relationName": "",
+                "path": "",
+                "relation": [
+                  "Roba",
+                  "Stanje robe na skladistu"
+                ],
+                "extension": "db",
+                "attributes": [
+                  {
+                    "name": "Sifra magacina",
+                    "type": "VARCHAR",
+                    "description": "attributeField3",
+                    "lenght": "5",
+                    "primaryKey": "true"
+                  },
+                  {
+                    "name": "Promet nabavke",
+                    "type": "INTEGER",
+                    "description": "attributeField3",
+                    "lenght": "0",
+                    "primaryKey": "false"
+                  }
+                ]
+              },
+              {
+                "name": "Stanje robe na skladistu",
+                "relationName": "",
+                "path": "",
+                "relation": "Promene",
+                "extension": "db",
+                "attributes": [
+                  {
+                    "name": "Redni broj promene",
+                    "type": "INTEGER",
+                    "description": "attributeField3",
+                    "lenght": "0",
+                    "primaryKey": "true"
+                  }
+                ]
+              },
+              {
+                "name": "Kupac",
+                "relationName": "",
+                "path": "",
+                "relation": "Dokument nabavke",
+                "extension": "db",
+                "attributes": [
+                  {
+                    "name": "PIB",
+                    "type": "VARCHAR",
+                    "description": "attributeField3",
+                    "lenght": "9",
+                    "primaryKey": "true"
+                  },
+                  {
+                    "name": "Naziv",
+                    "type": "VARCHAR",
+                    "description": "attributeField3",
+                    "lenght": "80",
+                    "primaryKey": "false"
+                  },
+                  {
+                    "name": "Adresa",
+                    "type": "VARCHAR",
+                    "description": "attributeField3",
+                    "lenght": "80",
+                    "primaryKey": "false"
+                  },
+                  {
+                    "name": "Telefon",
+                    "type": "VARCHAR",
+                    "description": "attributeField3",
+                    "lenght": "15",
+                    "primaryKey": "false"
+                  },
+                  {
+                    "name": "Email",
+                    "type": "VARCHAR",
+                    "description": "attributeField3",
+                    "lenght": "15",
+                    "primaryKey": "false"
+                  }
+                ]
+              },
+              {
+                "name": "Dobavljac",
+                "relationName": "",
+                "path": "",
+                "relation": "",
+                "extension": "db",
+                "attributes": [
+                  {
+                    "name": "PIB",
+                    "type": "VARCHAR",
+                    "description": "attributeField3",
+                    "lenght": "9",
+                    "primaryKey": "true"
+                  },
+                  {
+                    "name": "Naziv",
+                    "type": "VARCHAR",
+                    "description": "attributeField3",
+                    "lenght": "80",
+                    "primaryKey": "false"
+                  },
+                  {
+                    "name": "Adresa",
+                    "type": "VARCHAR",
+                    "description": "attributeField3",
+                    "lenght": "80",
+                    "primaryKey": "false"
+                  },
+                  {
+                    "name": "Email",
+                    "type": "VARCHAR",
+                    "description": "attributeField3",
+                    "lenght": "50",
+                    "primaryKey": "false"
+                  }
+                ]
+              },
+              {
+                "name": "Zaposleno lice",
+                "relationName": "",
+                "path": "",
+                "relation": "Promene",
+                "extension": "db",
+                "attributes": [
+                  {
+                    "name": "ID",
+                    "type": "VARCHAR",
+                    "description": "attributeField3",
+                    "lenght": "13",
+                    "primaryKey": "true"
+                  },
+                  {
+                    "name": "Broj radne knjizice",
+                    "type": "VARCHAR",
+                    "description": "attributeField3",
+                    "lenght": "13",
+                    "primaryKey": "true"
+                  },
+                  {
+                    "name": "JMBG",
+                    "type": "VARCHAR",
+                    "description": "attributeField3",
+                    "lenght": "13",
+                    "primaryKey": "false"
+                  },
+                  {
+                    "name": "Ime",
+                    "type": "VARCHAR",
+                    "description": "attributeField3",
+                    "lenght": "20",
+                    "primaryKey": "false"
+                  },
+                  {
+                    "name": "Prezime",
+                    "type": "VARCHAR",
+                    "description": "attributeField3",
+                    "lenght": "20",
+                    "primaryKey": "false"
+                  },
+                  {
+                    "name": "Adresa",
+                    "type": "VARCHAR",
+                    "description": "attributeField3",
+                    "lenght": "25",
+                    "primaryKey": "false"
+                  },
+                  {
+                    "name": "Broj telefona",
+                    "type": "VARCHAR",
+                    "description": "attributeField3",
+                    "lenght": "20",
+                    "primaryKey": "false"
+                  },
+                  {
+                    "name": "Rad na odredjeno?",
+                    "type": "BOOLEAN",
+                    "description": "attributeField3",
+                    "lenght": "0",
+                    "primaryKey": "false"
+                  },
+                  {
+                    "name": "Pozicija",
+                    "type": "VARCHAR",
+                    "description": "attributeField3",
+                    "lenght": "20",
+                    "primaryKey": "false"
+                  },
+                  {
+                    "name": "Od",
+                    "type": "DATE",
+                    "description": "attributeField3",
+                    "lenght": "0",
+                    "primaryKey": "false"
+                  },
+                  {
+                    "name": "Do",
+                    "type": "DATE",
+                    "description": "attributeField3",
+                    "lenght": "0",
+                    "primaryKey": "false"
+                  },
+                  {
+                    "name": "Dodavanje artikla",
+                    "type": "CHAR",
+                    "description": "attributeField3",
+                    "lenght": "10",
+                    "primaryKey": "false"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "Prodaja",
+            "relationName": [
+              ""
+            ],
+            "path": "",
+            "relation": [
+              "Dokument prodaje"
+            ],
+            "extension": "db",
+            "attributes": [
+              {
+                "name": "Sifra prodaje",
+                "type": "VARCHAR",
+                "description": "attributeField1",
+                "length": "5",
+                "primaryKey": "true"
+              },
+              {
+                "name": "Vrednost ostvarene prodaje",
+                "type": "INTEGER",
+                "description": "attributeField2",
+                "length": "0",
+                "primaryKey": "false"
+              },
+              {
+                "name": "Ukupan obim prodaje",
+                "type": "INTEGER",
+                "description": "attributeField3",
+                "length": "0",
+                "primaryKey": "false"
+              }
+            ]
+          },
+          {
+            "name": "Dokument prodaje",
+            "relationName": [
+              ""
+            ],
+            "path": "",
+            "relation": [
+              "Prodaja"
+            ],
+            "extension": "db",
+            "attributes": [
+              {
+                "name": "Broj fakture",
+                "type": "VARCHAR",
+                "description": "attributeField1",
+                "length": "5",
+                "primaryKey": "true"
+              },
+              {
+                "name": "Cena prodaje artikla",
+                "type": "INTEGER",
+                "description": "attributeField2",
+                "length": "0",
+                "primaryKey": "false"
+              },
+              {
+                "name": "Vrednost prodaje artikla",
+                "type": "INTEGER",
+                "description": "attributeField3",
+                "length": "0",
+                "primaryKey": "false"
+              },
+              {
+                "name": "Datum prodaje",
+                "type": "DATE",
+                "description": "attributeField4",
+                "length": "0",
+                "primaryKey": "false"
+              },
+              {
+                "name": "Fakturna vrednost",
+                "type": "INTEGER",
+                "description": "attributeField5",
+                "length": "0",
+                "primaryKey": "false"
+              },
+              {
+                "name": "PDV",
+                "type": "INTEGER",
+                "description": "attributeField6",
+                "length": "0",
+                "primaryKey": "false"
+              },
+              {
+                "name": "ZBIR",
+                "type": "INTEGER",
+                "description": "attributeField7",
+                "length": "0",
+                "primaryKey": "false"
+              }
+            ]
+          },
+          {
+            "name": "Skladiste",
+            "relationName": [
+              ""
+            ],
+            "path": "",
+            "relation": [
+              "Zaposleno lice",
+              "Poslovni sistem"
+            ],
+            "extension": "db",
+            "attributes": [
+              {
+                "name": "Oznaka",
+                "type": "VARCHAR",
+                "description": "attributeField1",
+                "length": "5",
+                "primaryKey": "true"
+              },
+              {
+                "name": "Velicina",
+                "type": "INTEGER",
+                "description": "attributeField2",
+                "length": "0",
+                "primaryKey": "false"
+              },
+              {
+                "name": "Adresa",
+                "type": "VARCHAR",
+                "description": "attributeField3",
+                "length": "80",
+                "primaryKey": "false"
+              },
+              {
+                "name": "Kapacitet",
+                "type": "BOOLEAN",
+                "description": "attributeField4",
+                "length": "0",
+                "primaryKey": "false"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

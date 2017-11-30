@@ -1,0 +1,126 @@
+package view;
+
+import java.awt.Color;
+import java.util.ArrayList;
+
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
+import javax.swing.JDialog;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+
+import app.MainFrame;
+import controller.AddButtonAction;
+import controller.SortButtonAction;
+import model.Attribute;
+import model.Entity;
+import net.miginfocom.swing.MigLayout;
+
+public class AddOrSortDialog extends JDialog {
+
+	public static final int ADD = 0;
+	public static final int SORT = 1;
+	private ArrayList<JCheckBox> checkBoxArrayList = new ArrayList<>();
+	private ArrayList<JComboBox<String>> comboBoxArrayList = new ArrayList<>();
+	private ArrayList<JTextField> textFieldArrayList = new ArrayList<>();
+	private String[] ascOrdesc = { "Ascending", "Descending" };
+
+	public AddOrSortDialog() {
+		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+		setLocationRelativeTo(null);
+		setSize(500, 500);
+	}
+
+	public void makeGUI(int number) {
+		JPanel panel = new JPanel();
+		switch (number) {
+		case ADD:
+			panel = addPanel();
+			setTitle("Add dialog");
+			break;
+
+		case SORT:
+			panel = sortPanel();
+			setTitle("Sort dialog");
+			break;
+		default:
+			break;
+		}
+		add(panel);
+		pack();
+	}
+
+	private JPanel sortPanel() {
+		checkBoxArrayList.clear();
+		comboBoxArrayList.clear();
+		Entity entity = MainFrame.getInstance().getCurrentRightPanel().getEntityContainer().getEntity();
+		JPanel panel = new JPanel();
+		panel.setLayout(new MigLayout());
+		int i = 0;
+		for (Attribute a : entity.getAttributes()) {
+			panel.add(new JLabel(a.getName()), "cell 0 " + i);
+
+			JCheckBox checkBox = new JCheckBox();
+			panel.add(checkBox, "cell 1 " + i);
+
+			if (a.isPrimaryKey()) {
+				checkBox.setSelected(true);
+			}
+			checkBoxArrayList.add(checkBox);
+			JComboBox<String> comboBox = new JComboBox<>(ascOrdesc);
+			comboBox.setSelectedIndex(0);
+			panel.add(comboBox, "cell 2 " + i);
+			comboBoxArrayList.add(comboBox);
+
+			i++;
+		}
+		JButton sortBtn = new JButton("Sort");
+		sortBtn.addActionListener(new SortButtonAction());
+		JButton cancel = new JButton("Cancel");
+		panel.add(sortBtn, "cell 0 " + i);
+		panel.add(cancel, "cell 1 " + i);
+		return panel;
+	}
+
+	private JPanel addPanel() {
+		textFieldArrayList.clear();
+		Entity entity = MainFrame.getInstance().getCurrentRightPanel().getEntityContainer().getEntity();
+		JPanel panel = new JPanel();
+		panel.setLayout(new MigLayout());
+		int i = 0;
+		for (Attribute a : entity.getAttributes()) {
+			if (a.isPrimaryKey()) {
+				panel.add(new JLabel(a.getName() + "*"), "cell 0 " + i);
+			} else {
+				panel.add(new JLabel(a.getName()), "cell 0 " + i);
+			}
+
+			JTextField textField = new JTextField(20);
+			textField.setToolTipText(a.getType());
+			panel.add(textField, "cell 1 " + i);
+			textFieldArrayList.add(textField);
+			i++;
+		}
+		JButton sortBtn = new JButton("Add");
+		sortBtn.addActionListener(new AddButtonAction());
+		JButton cancel = new JButton("Cancel");
+		panel.add(sortBtn, "cell 0 " + i);
+		panel.add(cancel, "cell 1 " + i);
+		return panel;
+	}
+
+	public ArrayList<JTextField> getTextFieldArrayList() {
+		return textFieldArrayList;
+	}
+
+	public ArrayList<JCheckBox> getCheckBoxArrayList() {
+		return checkBoxArrayList;
+	}
+
+	public ArrayList<JComboBox<String>> getComboBoxArrayList() {
+		return comboBoxArrayList;
+	}
+
+}

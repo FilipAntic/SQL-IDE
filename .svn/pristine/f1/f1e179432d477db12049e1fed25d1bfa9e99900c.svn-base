@@ -1,0 +1,126 @@
+package controller;
+
+public class ActionsContainer {
+
+	private SortAction sortAction;
+	private UpdateAction updateAction;
+	private DeleteAction deleteAction;
+	private AddAction addAction;
+	private ChangeAction changeAction;
+	private FindAction findAction;
+	private ConnectAction connectAction;
+	private DisconnectAction disconnectAction;
+	private SwitchAction switchAction;
+	private AboutInfAction aboutInfAction;
+	private OpenMetaSchemaAction openMetaSchemaAction;
+	private OpenFile openFile;
+	private FetchNextBlockAction fetchNextBlockAction;
+	private FetchPreviousBlockAction fetchPreviousBlockAction;
+
+	public ActionsContainer() {
+		sortAction = new SortAction();
+		updateAction = new UpdateAction();
+		deleteAction = new DeleteAction();
+		addAction = new AddAction();
+		changeAction = new ChangeAction();
+		findAction = new FindAction();
+		connectAction = new ConnectAction();
+		disconnectAction = new DisconnectAction();
+		switchAction = new SwitchAction();
+		aboutInfAction = new AboutInfAction();
+		openMetaSchemaAction = new OpenMetaSchemaAction();
+		openFile = new OpenFile();
+		fetchNextBlockAction = new FetchNextBlockAction();
+		fetchPreviousBlockAction = new FetchPreviousBlockAction();
+
+	}
+
+	public SortAction getSortAction() {
+		return sortAction;
+	}
+
+	public UpdateAction getUpdateAction() {
+		return updateAction;
+	}
+
+	public FetchNextBlockAction getFetchNextBlockAction() {
+		return fetchNextBlockAction;
+	}
+
+	public FetchPreviousBlockAction getFetchPreviousBlockAction() {
+		return fetchPreviousBlockAction;
+	}
+
+	public OpenFile getOpenFile() {
+		return openFile;
+	}
+
+	public DeleteAction getDeleteAction() {
+		return deleteAction;
+	}
+
+	public void setDeleteAction(DeleteAction deleteAction) {
+		this.deleteAction = deleteAction;
+	}
+
+	public ConnectAction getConnectAction() {
+		return connectAction;
+	}
+
+	public OpenMetaSchemaAction getOpenMetaSchemaAction() {
+		return openMetaSchemaAction;
+	}
+
+	public void setConnectAction(ConnectAction connectAction) {
+		this.connectAction = connectAction;
+	}
+
+	public DisconnectAction getDisconnectAction() {
+		return disconnectAction;
+	}
+
+	public void setDisconnectAction(DisconnectAction disconnectAction) {
+		this.disconnectAction = disconnectAction;
+	}
+
+	public SwitchAction getSwitchAction() {
+		return switchAction;
+	}
+
+	public void setSwitchAction(SwitchAction switchAction) {
+		this.switchAction = switchAction;
+	}
+
+	public AddAction getAddAction() {
+		return addAction;
+	}
+
+	public void setAddAction(AddAction addAction) {
+		this.addAction = addAction;
+	}
+
+	public ChangeAction getChangeAction() {
+		return changeAction;
+	}
+
+	public void setChangeAction(ChangeAction changeAction) {
+		this.changeAction = changeAction;
+	}
+
+	public FindAction getFindAction() {
+		return findAction;
+	}
+
+	public void setFindAction(FindAction findAction) {
+		this.findAction = findAction;
+	}
+
+	public AboutInfAction getAboutInfAction() {
+		return aboutInfAction;
+	}
+
+	public void setAboutInfAction(AboutInfAction aboutInfAction) {
+		this.aboutInfAction = aboutInfAction;
+	}
+
+}

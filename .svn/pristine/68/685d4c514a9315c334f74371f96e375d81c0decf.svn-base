@@ -1,0 +1,50 @@
+package model;
+
+import java.util.ArrayList;
+
+import files.InfFile;
+
+public class Entity extends InfomationalResource {
+
+	private ArrayList<Attribute> attributes;
+	private InfFile infFile;
+	private String path;
+	public Entity() {
+		attributes = new ArrayList<>();
+	}
+
+	public void addAttribute(Attribute attribute) {
+		attributes.add(attribute);
+	}
+
+	public ArrayList<Attribute> getAttributes() {
+		return attributes;
+	}
+	
+	public int getAmountOfPrimarykeys(){
+		int counter = 0;
+		for(Attribute a: attributes){
+			if(a.isPrimaryKey()){
+				counter++;
+			}
+		}
+		return counter;
+	}
+	
+	public void setInfFile(InfFile infFile) {
+		this.infFile = infFile;
+	}
+	
+	public InfFile getInfFile() {
+		return infFile;
+	}
+	
+	public String getPathToBase() {
+		return path;
+	}
+	
+	public void setPath(String path) {
+		this.path = path;
+	}
+
+}

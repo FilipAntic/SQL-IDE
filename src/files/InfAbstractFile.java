@@ -1,0 +1,277 @@
+package files;
+
+import java.io.BufferedInputStream;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.NoSuchElementException;
+import java.util.stream.Stream;
+
+import model.Attribute;
+import model.Entity;
+import model.InfPackage;
+import model.InfTableModel;
+
+public abstract class InfAbstractFile implements InfFile {
+
+	private int start = 0;
+	private int end = 0;
+	private int fetchNumber = 100;
+	private int left = 0;
+	private int right;
+	private String path;
+	private String fileName;
+	private String extension;
+	private ArrayList<Attribute> fields;
+	private InfTableModel model;
+	private Entity entity;
+
+
+	@Override
+	public void change() {
+
+	}
+
+	@Override
+	public void delete() {
+
+	}
+
+	
+	public int find(ArrayList<String> list) {
+		right = countLines(entity.getRelation());
+		int place = 0;
+		for (int i = 0; i < list.size(); i++) {
+			place = binarySearch(left, right, list.get(i), i);
+		}
+		return place;
+	}
+
+	@Override
+	public void fetchNext() {
+		for (int i = model.getRowCount() - 1; i >= 0; i--) {
+			model.removeRow(i);
+		}
+		if (start - fetchNumber < 0) {
+			for (int i = 0; i < fetchNumber; i++) {
+				model.addRow(getSplittedRow(getSpecificRow(0 + i, ""), ""));
+			}
+			start = fetchNumber;
+		} else {
+			for (int i = 0; i < fetchNumber; i++) {
+				model.addRow(getSplittedRow(getSpecificRow(start + i, ""), ""));
+			}
+			start += fetchNumber;
+		}
+	}
+
+	@Override
+	public void fetchBack() {
+		for (int i = model.getRowCount() - 1; i >= 0; i--) {
+			model.removeRow(i);
+		}
+
+		if (start - fetchNumber < 0) {
+			for (int i = 0; i < fetchNumber; i++) {
+				model.addRow(getSplittedRow(getSpecificRow(0 + i, ""), ""));
+			}
+			start = 0;
+		} else {
+			for (int i = 0; i < fetchNumber; i++) {
+				model.addRow(getSplittedRow(getSpecificRow(start - fetchNumber + i + 1, ""), ""));
+
+			}
+			start -= fetchNumber;
+		}
+
+	}
+
+	public void filter(int selectedRow) {
+		Object[] array = new Object[model.getColumnCount()];
+		// ova for petlja uzima red selektovani u tabeli
+		for (int i = 0; i < model.getColumnCount(); i++) {
+			Object objectOfSelectedRow = model.getValueAt(selectedRow, i);
+			array[i] = objectOfSelectedRow;
+		}
+		int where = find(getPrimaryKeys(array));
+		System.out.println("Rezultat je " + where);
+	}
+
+	public static int countLines(String filename) {
+		InputStream is = null;
+		byte[] c = new byte[1024];
+		int count = 0;
+		int readChars = 0;
+		boolean empty = true;
+		try {
+			is = new BufferedInputStream(new FileInputStream(filename));
+
+			while ((readChars = is.read(c)) != -1) {
+				empty = false;
+				for (int i = 0; i < readChars; ++i) {
+					if (c[i] == '\n') {
+						++count;
+					}
+				}
+			}
+			is.close();
+
+		} catch (IOException e) {
+
+		}
+		return (count == 0 && !empty) ? 1 : count;
+	}
+
+	public ArrayList<String> getPrimaryKeys(Object[] array) {
+		ArrayList<String> primaryKeys = new ArrayList<>();
+		int i = 0;
+		for (Attribute a : entity.getAttributes()) {
+
+			if (a.isPrimaryKey()) {
+//				primaryKeys.add((String) array[i]);
+			}
+			i++;
+		}
+
+		return primaryKeys;
+	}
+
+	public String[] getSplittedRow(String row, String string) {
+
+		int start = 0;
+		int end = 0;
+		int i = 0;
+		String[] line = new String[entity.getAttributes().size()];
+		Entity currentEntity = null;
+		if (string.equals("relation")) {
+			InfPackage currentpackage = (InfPackage) entity.getParent();
+			currentEntity = currentpackage.getEntityByName(entity.getRelationName());
+		} else {
+			currentEntity = entity;
+		}
+
+		for (Attribute a : currentEntity.getAttributes()) {
+			end += a.getLength();
+			line[i] = row.substring(start, end);
+			start = end;
+			i++;
+		}
+		return line;
+
+	}
+
+	private String getSpecificRow(int row, String choose) {
+		Stream<String> lines;
+		String line = null;
+		try {
+			if (choose.equals("relation")) {
+				lines = Files.lines(Paths.get(entity.getRelation()), Charset.forName("ISO-8859-1"));
+			} else {
+				lines = Files.lines(Paths.get(entity.getInfFile().getPath()), Charset.forName("ISO-8859-1"));
+			}
+
+			line = lines.skip(row).findFirst().get();
+		} catch (IOException e) {
+			System.out.println("Sta je sada?");
+		} catch (NoSuchElementException e) {
+			System.err.println("Nema vise podataka");
+		}
+		return line;
+	}
+
+	public int binarySearch(int l, int r, String x, int i) {
+		if (r >= l) {
+			int mid = l + (r - l) / 2;
+			int number = x.compareToIgnoreCase(getSplittedRow(getSpecificRow(mid, "relation"), "relation")[i]);
+			System.out.println("X je " + x);
+			System.out.println("Linija je " + getSplittedRow(getSpecificRow(mid, "relation"), "relation")[i]);
+			System.out.println("Number je " + number);
+
+			if (number == 0) {
+				left = l;
+				right = r;
+				return mid;
+			} else if (number > 0) {
+				return binarySearch(mid + 1, r, x, i);
+			} else {
+				return binarySearch(l, mid - 1, x, i);
+			}
+
+		}
+
+		return -1;
+	}
+
+	public String getPath() {
+		return path;
+	}
+
+	public void setPath(String path) {
+		this.path = path;
+	}
+
+	public String getFileName() {
+		return fileName;
+	}
+
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
+	}
+
+	public ArrayList<Attribute> getFields() {
+		return fields;
+	}
+
+	public void setFields(ArrayList<Attribute> fields) {
+		this.fields = fields;
+	}
+
+	public String getExtension() {
+		return extension;
+	}
+
+	public void setExtension(String extension) {
+		this.extension = extension;
+	}
+
+	public int getStart() {
+		return start;
+	}
+
+	public int getEnd() {
+		return end;
+	}
+
+	public int getFetchNumber() {
+		return fetchNumber;
+	}
+
+	public int getLeft() {
+		return left;
+	}
+
+	public int getRight() {
+		return right;
+	}
+
+	public InfTableModel getModel() {
+		return model;
+	}
+
+	public void setModel(InfTableModel model) {
+		this.model = model;
+	}
+
+	public Entity getEntity() {
+		return entity;
+	}
+
+	public void setEntity(Entity entity) {
+		this.entity = entity;
+	}
+
+}

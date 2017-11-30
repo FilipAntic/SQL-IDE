@@ -1,0 +1,20 @@
+package model;
+
+import java.util.ArrayList;
+
+public class InfPackage extends InfomationalResource {
+
+	private ArrayList<Entity> entities;
+
+	public InfPackage() {
+		entities = new ArrayList<>();
+	}
+
+	public void addEntity(Entity entity){
+		entities.add(entity);
+		add(entity);
+	}
+	public ArrayList<Entity> getEntities() {
+		return entities;
+	}
+}

@@ -1,0 +1,11 @@
+package controller;
+
+import java.util.EventObject;
+
+public class UpdateBlockEvent extends EventObject {
+
+	public UpdateBlockEvent(Object source) {
+		super(source);
+	}
+
+}

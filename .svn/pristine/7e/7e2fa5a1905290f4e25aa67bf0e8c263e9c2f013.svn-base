@@ -1,0 +1,28 @@
+package view;
+
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+
+import model.InfTableModel;
+
+public class RightDownerPanel extends JPanel{
+	private JScrollPane scrollPane;
+	InfTable infTable;
+	public RightDownerPanel() {
+		
+	}
+	public void setModel(InfTableModel infTableModel){
+		infTable = new InfTable();
+		
+		infTable.setModel(infTableModel);
+		infTable.revalidate();
+		infTable.repaint();
+		scrollPane = new JScrollPane(infTable);
+		add(scrollPane);
+	}
+	public InfTable getInfTable() {
+		return infTable;
+	}
+	
+}
+

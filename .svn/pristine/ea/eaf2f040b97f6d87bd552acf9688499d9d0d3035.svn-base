@@ -1,0 +1,106 @@
+package files;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.Date;
+
+import app.MainFrame;
+import interpreters.StringUtil;
+import model.Attribute;
+
+public class DBFile extends InfAbstractFile {
+
+	@Override
+	public void add() {
+
+	}
+
+	@Override
+	public void change() {
+
+	}
+
+	@Override
+	public void delete() {
+
+	}
+
+	@Override
+	public void fetchNext() {
+
+	}
+
+	@Override
+	public void sort(ArrayList<String> string, ArrayList<Integer> integer) {
+
+		String sql = "SELECT";
+		int i = 0;
+		for (Attribute a : getEntity().getAttributes()) {
+			if (getEntity().getAttributes().size() - 1 == i) {
+				sql += " " + StringUtil.normalToDBname(a.getName()) + " ";
+			} else {
+				sql += " " + StringUtil.normalToDBname(a.getName()) + ",";
+			}
+			i++;
+		}
+
+		sql += "FROM " + StringUtil.normalToDBname(getEntity().getName()) + " ORDER BY";
+		for (int j = 0; j < integer.size(); j++) {
+			if ((integer.size() - 1) == j) {
+				sql += " " + StringUtil.normalToDBname(getEntity().getAttributes().get(j).getName()) + " "
+						+ StringUtil.ascOrDesc(string.get(j));
+			} else {
+				sql += " " + StringUtil.normalToDBname(getEntity().getAttributes().get(j).getName()) + " "
+						+ StringUtil.ascOrDesc(string.get(j)) + ",";
+			}
+
+		}
+		Statement statement = null;
+		try {
+
+			statement = MainFrame.getInstance().getConn().createStatement();
+			getModel().removeAll();
+			ResultSet result = statement.executeQuery(sql);
+			while (result.next()) {
+				Object[] object = new Object[getEntity().getAttributes().size()];
+				int k = 0;
+				for (Attribute a : getEntity().getAttributes()) {
+					switch (a.getType().toUpperCase()) {
+					case "INTEGER":
+						Integer intFromBase = result.getInt(StringUtil.normalToDBname(a.getName()));
+						object[k] = intFromBase;
+						break;
+					case "STRING" :
+						String stringFromBase = result.getString(StringUtil.normalToDBname(a.getName()));
+						object[k] = stringFromBase;
+						break;
+					case "BOOLEAN":
+						Boolean booleanFromBase = result.getBoolean(StringUtil.normalToDBname(a.getName()));
+						object[k] = booleanFromBase;
+						break;
+					case "DATE":
+						Date dateFromBase = result.getDate(StringUtil.normalToDBname(a.getName()));
+						object[k] = dateFromBase;
+						break;
+					}
+					k++;
+				}
+				
+				getModel().addRow(object);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		System.out.println(sql);
+	}
+
+	@Override
+	public void sort() {
+		// TODO Auto-generated method stub
+
+	}
+
+}

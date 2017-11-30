@@ -1,0 +1,15 @@
+package view;
+
+import javax.swing.JDialog;
+
+public class AddOrSortDialog extends JDialog{
+
+	public static int ADD = 0;
+	public static int SORT = 1;
+	
+	
+	public AddOrSortDialog() {
+		
+	}
+	
+}

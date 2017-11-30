@@ -1,0 +1,33 @@
+package controller;
+
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+import javax.swing.table.DefaultTableModel;
+
+import app.MainFrame;
+import model.InfTableModel;
+import view.InfTable;
+import view.RightPanel;
+
+public class InfRowFilter implements ListSelectionListener {
+
+	@Override
+	public void valueChanged(ListSelectionEvent e) {
+		// TODO Auto-generated method stub
+		RightPanel rightPanel = MainFrame.getInstance().getInfHorizontalSplitPane().getInfVerticalSplitPane()
+				.getRightUpperPanel().getSelectedPanel();
+		InfTable model = (InfTable) rightPanel.getEntityContainer().getTable();
+		Object[] array = new Object[model.getModel().getColumnCount()];
+
+		for (int i = 0; i < model.getModel().getColumnCount(); i++) {
+			Object selectedRow = model.getValueAt(model.getSelectedRow(), i);
+			array[i] = selectedRow;
+			//""
+		}
+		((DefaultTableModel)MainFrame.getInstance().getInfHorizontalSplitPane().getInfVerticalSplitPane().getRightDownerPanel().getInfTable().getModel()).removeRow(0);
+
+		((DefaultTableModel)MainFrame.getInstance().getInfHorizontalSplitPane().getInfVerticalSplitPane().getRightDownerPanel().getInfTable().getModel()).addRow(array);
+		
+	}
+
+}

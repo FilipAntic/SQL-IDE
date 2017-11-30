@@ -1,0 +1,144 @@
+package interpreters;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Iterator;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+import org.json.JSONTokener;
+
+import app.MainFrame;
+import files.InfFileFactory;
+import model.Attribute;
+import model.Entity;
+import model.InfPackage;
+import model.MetaSchema;
+import model.Storage;
+
+public class JSONTreeInterpreter {
+
+	private static Storage storage;
+
+	public JSONTreeInterpreter() {
+		storage = new Storage();
+	}
+
+	public Storage readMetaSchema() {
+		
+		BufferedReader br = null;
+		try {
+			br = new BufferedReader(new InputStreamReader(new FileInputStream(new File(MetaSchema.path))));
+
+			JSONTokener tokener = new JSONTokener(br);
+			JSONObject o = new JSONObject(tokener);
+			storage.setName(o.getJSONObject("storage").getString("name"));
+			JSONArray jsonArrayOfPackages = o.getJSONObject("storage").getJSONArray("packages");
+			for (int i = 0; i < jsonArrayOfPackages.length(); i++) {
+				JSONObject packageObject = jsonArrayOfPackages.getJSONObject(i);
+				JSONArray jsonArrayOfEntities = packageObject.getJSONArray("entities");
+				InfPackage infPackage = new InfPackage();
+				infPackage.setName(packageObject.getString("name"));
+				for (int j = 0; j < jsonArrayOfEntities.length(); j++) {
+					JSONObject entityObject = jsonArrayOfEntities.getJSONObject(j);
+					JSONArray jsonArrayOfAttributes = entityObject.getJSONArray("attributes");
+					Entity entity = new Entity();
+					entity.setName(entityObject.getString("name"));
+					for (int k = 0; k < jsonArrayOfAttributes.length(); k++) {
+						JSONObject attributeObject = jsonArrayOfAttributes.getJSONObject(k);
+						Attribute attribute = new Attribute();
+						attribute.setName(attributeObject.getString("name"));
+						attribute.setType(attributeObject.getString("type"));
+						attribute.setDescription(attributeObject.getString("description"));
+						attribute.setLength(attributeObject.getInt("length"));
+						attribute.setPrimaryKey(attributeObject.getBoolean("primaryKey"));
+						entity.addAttribute(attribute);
+					}
+					entity.setRelationName(entityObject.getString("relationName"));
+					entity.setRelation(entityObject.getString("relation"));
+					entity.setInfFile(entityObject.getString("extension"),entityObject.getString("path"));
+					infPackage.addEntity(entity);
+				}
+				storage.addPackage(infPackage);
+			}
+			br.close();
+		} catch (IOException e1) {
+
+			e1.printStackTrace();
+		}
+
+		return storage;
+	}
+
+	public static void readFileStorage(File file) {
+		storage = MainFrame.getInstance().getStorage();
+		storage.setName(WorkingWithPath.getFileName(MainFrame.getInstance().getStorageFile()));
+		BufferedReader br = null;
+		try {
+			br = new BufferedReader(new InputStreamReader(new FileInputStream(file)));
+
+			JSONTokener tokener = new JSONTokener(br);
+			JSONObject o = new JSONObject(tokener);
+			InfPackage infPackage = getPackage(file);
+			infPackage.setName(WorkingWithPath.getParentName(file));
+
+			Entity entity = getEntity(file, infPackage);
+			entity.setName(WorkingWithPath.getFileName(file));
+			
+		//	entity.setPath(o.getString("path"));
+			if (entity.getAttributes().isEmpty()) {
+				JSONArray proba = o.getJSONArray("attributes");
+				for (int i = 0; i < proba.length(); i++) {
+					JSONObject object = proba.getJSONObject(i);
+					Attribute attribute = new Attribute();
+					attribute.setName(object.getString("name"));
+					attribute.setLength(object.getInt("length"));
+					attribute.setType(object.getString("type"));
+					entity.addAttribute(attribute);
+				}
+			}
+			
+			if (!infPackage.getEntities().contains(entity)) {
+				infPackage.addEntity(entity);
+			}
+			if (!storage.getPackages().contains(infPackage)) {
+				storage.addPackage(infPackage);
+			}
+
+			br.close();
+		} catch (IOException e1) {
+
+			e1.printStackTrace();
+		}
+		MainFrame.getInstance().setStorage(storage);
+	}
+
+	public static InfPackage getPackage(File file) {
+
+		InfPackage infPackage = new InfPackage();
+		for (InfPackage p : storage.getPackages()) {
+			if (p.getName().equals(WorkingWithPath.getParentName(file))) {
+				return p;
+			}
+		}
+
+		return infPackage;
+	}
+
+	public static Entity getEntity(File file, InfPackage infPackage) {
+		Entity entity = new Entity();
+
+		for (Entity e : infPackage.getEntities()) {
+			if (e.getName().equals(WorkingWithPath.getFileName(file))) {
+				return e;
+			}
+		}
+
+		return entity;
+	}
+
+}

@@ -1,0 +1,36 @@
+{
+  "path": "NastavniPredmeti.txt",
+  "attributes": [
+    {
+      "name": "OZNAKA_PLANA",
+      "description": "attributeField",
+      "type": "TYPE_CHAR",
+      "length": "2"
+    },
+    {
+      "name": "SIFRA_PREDMETA",
+      "description": "attributeField2",
+      "type": "TYPE_VARCHAR",
+      "length": "5"
+      
+    },
+    {
+      "name": "NAZIV_PREDMETA",
+      "description": "attributeField3",
+      "type": "TYPE_VARCHAR",
+      "length": "80"
+    },
+    {
+      "name": "TRAJE_SEMESTARA",
+      "description": "attributeField4",
+      "type": "TYPE_NUMERIC",
+      "length": "2"
+    },
+    {
+      "name": "BROJ_KREDITA",
+      "description": "attributeField5",
+      "type": "TYPE_NUMERIC",
+      "length": "3"
+    }
+  ]
+}

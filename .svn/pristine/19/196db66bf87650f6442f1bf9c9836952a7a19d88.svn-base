@@ -1,0 +1,30 @@
+package controller;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
+import java.util.ArrayList;
+
+import javax.swing.KeyStroke;
+
+import files.InfFile;
+import view.InfToolBar;
+import view.RightPanel;
+
+public class ChangeAction extends AbstractInfAction {
+
+	public ChangeAction() {
+		putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_D, ActionEvent.CTRL_MASK));
+		putValue(SMALL_ICON, loadIcon("/images/change/pencil.png"));
+		putValue(SHORT_DESCRIPTION, "Change");
+		putValue(LARGE_ICON_KEY, loadIcon("/images/change/pencil.png"));
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		RightPanel rightPanel = ((RightPanel)((InfToolBar)e.getSource()).getParent());
+		rightPanel.getEntityContainer().getEntity().getInfFile().change();
+	}
+	
+	
+}
+

@@ -1,0 +1,26 @@
+package controller;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
+
+import javax.swing.KeyStroke;
+
+import view.InfToolBar;
+import view.RightPanel;
+
+public class FindAction extends AbstractInfAction {
+
+	public FindAction() {
+		putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_D, ActionEvent.CTRL_MASK));
+		putValue(SMALL_ICON, loadIcon("/images/find/view.png"));
+		putValue(SHORT_DESCRIPTION, "Find");
+		putValue(LARGE_ICON_KEY, loadIcon("/images/find/view.png"));
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		RightPanel rightPanel = ((RightPanel)((InfToolBar)e.getSource()).getParent());
+		rightPanel.getEntityContainer().getEntity().getInfFile().find(null);
+	}
+}
+

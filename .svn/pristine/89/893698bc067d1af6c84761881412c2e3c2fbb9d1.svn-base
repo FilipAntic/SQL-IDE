@@ -1,0 +1,40 @@
+package files;
+
+import java.util.ArrayList;
+
+public class SerFile extends InfAbstractFile implements InfFile{
+
+	public SerFile() {
+		
+	}
+
+	@Override
+	public void add() {
+	}
+
+	@Override
+	public void change() {
+
+	}
+
+	@Override
+	public void delete() {
+
+	}
+
+	@Override
+	public void sort() {
+		
+		
+	}
+
+	@Override
+	public void sort(ArrayList<String> string, ArrayList<Integer> integer) {
+		
+	}
+
+
+
+
+
+}

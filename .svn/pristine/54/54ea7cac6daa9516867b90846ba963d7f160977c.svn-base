@@ -1,0 +1,60 @@
+package files;
+
+import java.util.ArrayList;
+
+import model.Attribute;
+
+public abstract class InfAbstractFile implements InfFile {
+
+	private String path;
+	private String fileName;
+	private ArrayList<Attribute> fields;
+	private int start = 0;
+	private int end = 0;
+	private int fetchNumber = 100;
+
+	@Override
+	public void add() {
+
+	}
+
+	@Override
+	public void change() {
+
+	}
+
+	@Override
+	public void delete() {
+
+	}
+
+	@Override
+	public void find(ArrayList<String> list) {
+
+	}
+
+	public String getPath() {
+		return path;
+	}
+
+	public void setPath(String path) {
+		this.path = path;
+	}
+
+	public String getFileName() {
+		return fileName;
+	}
+
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
+	}
+
+	public ArrayList<Attribute> getFields() {
+		return fields;
+	}
+
+	public void setFields(ArrayList<Attribute> fields) {
+		this.fields = fields;
+	}
+
+}

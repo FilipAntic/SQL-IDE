@@ -1,0 +1,8 @@
+{
+	"file" : "File",
+	"help" : "Help",
+	"login" : "Login",
+	"register" : "Register now",
+	"username" : "Username:",
+	"password" : "Password:"
+}

@@ -1,0 +1,77 @@
+package controller;
+
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
+import javax.swing.SwingUtilities;
+
+import app.MainFrame;
+import model.Entity;
+import model.InfPackage;
+import model.InfTableModel;
+import view.EntityContainer;
+import view.InfTable;
+import view.RightPanel;
+
+public class InfTreeMouseAdapter extends MouseAdapter {
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		if (SwingUtilities.isMiddleMouseButton(e)) {
+			try {
+				Object object = MainFrame.getInstance().getInfHorizontalSplitPane().getLeftScrollPane().getInfTree()
+						.getLastSelectedPathComponent();
+				Entity entity = (Entity) object;
+				MainFrame.getInstance().getInfHorizontalSplitPane().getInfVerticalSplitPane().getRightUpperPanel()
+						.findEntityContainer(entity).closeTab();
+				
+			} catch (NullPointerException e2) {
+
+			}
+		}
+
+		if (SwingUtilities.isLeftMouseButton(e)) {
+			if (e.getClickCount() == 2) {
+				Object object = MainFrame.getInstance().getInfHorizontalSplitPane().getLeftScrollPane().getInfTree()
+						.getLastSelectedPathComponent();
+				try {
+					if (object != null) {
+						if (object instanceof Entity) {
+							Entity entity = (Entity) object;
+							InfTable infTable = new InfTable();
+							RightPanel panel = new RightPanel(infTable, entity);
+							MainFrame.getInstance().getInfHorizontalSplitPane().getInfVerticalSplitPane()
+									.getRightUpperPanel().addWithTitle(panel);
+							MainFrame.getInstance().getInfHorizontalSplitPane().getInfVerticalSplitPane()
+									.getRightUpperPanel().setSelectedComponent(panel);
+							
+							for(String b: entity.getRelations()){
+								InfTable inf = new InfTable();
+								Entity ent = getByEntityName(b);
+								System.out.println("Relacija"+ent.getName());
+								MainFrame.getInstance().getInfHorizontalSplitPane().getInfVerticalSplitPane().getRightDownerPanel().addRelation(new RightPanel(inf, ent));
+							}
+							//MainFrame.getInstance().getInfHorizontalSplitPane().getInfVerticalSplitPane().getRightDownerPanel().setModel(new InfTableModel());
+
+						}
+					}
+				} catch (NullPointerException e2) {
+
+				}
+			}
+			super.mouseReleased(e);
+		}
+	}
+
+	public Entity getByEntityName(String string){
+		System.out.println(MainFrame.getInstance().getInfHorizontalSplitPane().getLeftScrollPane().getInfTree().getStorage().getPackages().size());
+		for(InfPackage pack: MainFrame.getInstance().getInfHorizontalSplitPane().getLeftScrollPane().getInfTree().getStorage().getPackages()){
+			for(Entity e : pack.getEntities()){
+				if(e.getName().equals(string)){
+					return e;
+				}
+			}
+		}
+		return null;
+	}
+}

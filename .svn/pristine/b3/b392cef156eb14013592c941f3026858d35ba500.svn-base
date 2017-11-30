@@ -1,0 +1,144 @@
+package files;
+
+import java.io.File;
+import java.io.IOException;
+import java.io.RandomAccessFile;
+import java.util.ArrayList;
+import java.util.StringTokenizer;
+
+import javax.swing.event.EventListenerList;
+
+import app.MainFrame;
+import controller.UpdateBlockEvent;
+import interfaces.UpdateBlockListener;
+import model.Attribute;
+import model.Entity;
+
+public abstract class InfAbstractFile implements InfFile {
+
+
+	protected String path;
+	protected String headerName;
+	protected String fileName;
+	protected boolean directory;
+	protected byte[] buffer;
+	private Entity entity;
+	protected String[][] data = null;
+	ArrayList<Attribute> fields = new ArrayList<Attribute>();// svi kriterijumi
+																// su sacuvani u
+																// kolekciji
+																// polja
+
+
+	EventListenerList listenerBlockList = new EventListenerList();
+	UpdateBlockEvent updateBlockEvent = null;
+
+	public InfAbstractFile(String path, String headerName, boolean directory) {
+		super();
+		this.path = path;
+		this.headerName = headerName;
+		this.directory = directory;
+	}
+
+	public InfAbstractFile() {
+		entity = (Entity) MainFrame.getInstance().getInfHorizontalSplitPane().getLeftScrollPane().getInfTree()
+				.getLastSelectedPathComponent();
+	}
+
+	
+
+	public void addUpdateBlockListener(UpdateBlockListener l) {
+		listenerBlockList.add(UpdateBlockListener.class, l);
+	}
+
+	public void removeUpdateBlockListener(UpdateBlockListener l) {
+		listenerBlockList.remove(UpdateBlockListener.class, l);
+	}
+
+	protected void fireUpdateBlockPerformed() {
+		Object[] listeners = listenerBlockList.getListenerList();
+		for (int i = listeners.length - 2; i >= 0; i -= 2) {
+			if (listeners[i] == UpdateBlockListener.class) {
+				if (updateBlockEvent == null)
+					updateBlockEvent = new UpdateBlockEvent(this);
+				((UpdateBlockListener) listeners[i + 1]).updateBlockPerformed(updateBlockEvent);
+			}
+		}
+
+	}
+
+	@Override
+	public void add() {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void change() {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void delete() {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void find(ArrayList<String> list) {
+		// TODO Auto-generated method stub
+
+	}
+
+	// Get i set metode klase
+	public String getPath() {
+		return path;
+	}
+
+	public void setPath(String path) {
+		this.path = path;
+	}
+
+	public String getHeaderName() {
+		return headerName;
+	}
+
+	public void setHeaderName(String headerName) {
+		this.headerName = headerName;
+	}
+
+	public String getFileName() {
+		return fileName;
+	}
+
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
+	}
+
+	public boolean isDirectory() {
+		return directory;
+	}
+
+	public void setDirectory(boolean directory) {
+		this.directory = directory;
+	}
+
+	public byte[] getBuffer() {
+		return buffer;
+	}
+
+	public void setBuffer(byte[] buffer) {
+		this.buffer = buffer;
+	}
+
+	public String[][] getData() {
+		return data;
+	}
+
+	public void setData(String[][] data) {
+		this.data = data;
+	}
+
+
+}

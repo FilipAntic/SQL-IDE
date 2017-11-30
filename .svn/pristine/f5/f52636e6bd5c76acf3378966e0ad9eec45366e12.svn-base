@@ -1,0 +1,11 @@
+package interfaces;
+
+import java.util.EventListener;
+
+import controller.UpdateBlockEvent;
+
+public interface UpdateBlockListener extends EventListener {
+
+	public void updateBlockPerformed(UpdateBlockEvent updateBlockEvent);
+	
+}

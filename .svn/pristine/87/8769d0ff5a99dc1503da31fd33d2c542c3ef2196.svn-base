@@ -1,0 +1,247 @@
+package model;
+
+import java.io.BufferedInputStream;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.NoSuchElementException;
+import java.util.stream.Stream;
+
+import javax.swing.table.DefaultTableModel;
+
+import app.MainFrame;
+
+public class InfTableModel extends DefaultTableModel {
+	private Entity entity;
+	private int start = 0;
+	private int end = 0;
+	private int fetchNumber = 100;
+	private int left = 0;
+	private int right;
+
+	public InfTableModel() {
+
+		Object object = MainFrame.getInstance().getInfHorizontalSplitPane().getLeftScrollPane().getInfTree()
+				.getLastSelectedPathComponent();
+
+		entity = (Entity) object;
+		setDataVector(null, arrayOfAttributes(entity.getAttributes()));
+		// fetchNext();
+	}
+
+	public Object[][] matrixOfNothing2() {
+		Object[][] objects = { { "" } };
+		return objects;
+	}
+
+	public Object[][] matrixOfNothing() {
+		Object[][] objects = { { "aa" }, { "bb" }, { "cc" }, { "dd" }, { "ee" }, { "ff" } };
+		return objects;
+	}
+
+	public Object[][] matrixOfNothingProba() throws IOException {
+		Object[][] objects = new Object[7838][5];
+		BufferedReader br = new BufferedReader(new FileReader(new File("resources/metaSchema/n.txt")));
+		String line = "";
+		for (int j = 0; j < 7838; j++) {
+			line = br.readLine();
+			objects[j][0] = line.substring(0, 1);
+			objects[j][1] = line.substring(2, 6);
+			objects[j][2] = line.substring(7, 86);
+			objects[j][3] = line.substring(87, 88);
+			objects[j][4] = line.substring(89, 91);
+
+		}
+
+		return objects;
+	}
+
+	public Object[] arrayOfAttributes(ArrayList<Attribute> attributes) {
+		Object[] objects = attributes.toArray(new Object[attributes.size()]);
+		return objects;
+	}
+
+	public static int countLines(String filename) {
+		InputStream is = null;
+		byte[] c = new byte[1024];
+		int count = 0;
+		int readChars = 0;
+		boolean empty = true;
+		try {
+			is = new BufferedInputStream(new FileInputStream(filename));
+
+			while ((readChars = is.read(c)) != -1) {
+				empty = false;
+				for (int i = 0; i < readChars; ++i) {
+					if (c[i] == '\n') {
+						++count;
+					}
+				}
+			}
+			is.close();
+
+		} catch (IOException e) {
+
+		}
+		return (count == 0 && !empty) ? 1 : count;
+	}
+
+	public void fetchNext() {
+		for (int i = getRowCount() - 1; i >= 0; i--) {
+			removeRow(i);
+		}
+		if (start - fetchNumber < 0) {
+			for (int i = 0; i < fetchNumber; i++) {
+				addRow(getSplittedRow(getSpecificRow(0 + i,""),""));
+			}
+			start = fetchNumber;
+		} else {
+			for (int i = 0; i < fetchNumber; i++) {
+				addRow(getSplittedRow(getSpecificRow(start + i,""),""));
+			}
+			start += fetchNumber;
+		}
+
+	}
+
+	public void fetchBack() {
+		for (int i = getRowCount() - 1; i >= 0; i--) {
+			removeRow(i);
+		}
+
+		if (start - fetchNumber < 0) {
+			for (int i = 0; i < fetchNumber; i++) {
+				addRow(getSplittedRow(getSpecificRow(0 + i,""),""));
+			}
+			start = 0;
+		} else {
+			for (int i = 0; i < fetchNumber; i++) {
+				addRow(getSplittedRow(getSpecificRow(start - fetchNumber + i + 1,""),""));
+
+			}
+			start -= fetchNumber;
+		}
+
+	}
+
+	public void filter(int selectedRow) {
+		Object[] array = new Object[getColumnCount()];
+		// ova for petlja uzima red selektovani u tabeli
+		for (int i = 0; i < getColumnCount(); i++) {
+			Object objectOfSelectedRow = getValueAt(selectedRow, i);
+			array[i] = objectOfSelectedRow;
+		}
+		int where = find(getPrimaryKeys(array));
+		System.out.println("Rezultat je "+where);
+	}
+
+	public String[] getSplittedRow(String row,String string) {
+
+		int start = 0;
+		int end = 0;
+		int i = 0;
+		String[] line = new String[entity.getAttributes().size()];
+		Entity currentEntity = null;
+		if(string.equals("relation")){
+			InfPackage currentpackage = (InfPackage) entity.getParent();
+			currentEntity = currentpackage.getEntityByName(entity.getRelationName());
+		}else{
+			currentEntity = entity;
+		}
+		
+		for (Attribute a : currentEntity.getAttributes()) {
+			end += a.getLength();
+			line[i] = row.substring(start, end);
+			start = end;
+			i++;
+		}
+		return line;
+
+	}
+
+	private String getSpecificRow(int row,String choose) {
+		Stream<String> lines;
+		String line = null;
+		try {
+			if(choose.equals("relation")){
+				lines = Files.lines(Paths.get(entity.getRelation()), Charset.forName("ISO-8859-1"));
+			}else{
+				lines = Files.lines(Paths.get(entity.getInfFile().getPath()), Charset.forName("ISO-8859-1"));
+			}
+			
+			line = lines.skip(row).findFirst().get();
+		} catch (IOException e) {
+			System.out.println("Sta je sada?");
+		} catch (NoSuchElementException e) {
+			System.err.println("Nema vise podataka");
+		}
+		return line;
+	}
+
+	public ArrayList<String> getPrimaryKeys(Object[] array) {
+		ArrayList<String> primaryKeys = new ArrayList<>();
+		int i = 0;
+		for (Attribute a : entity.getAttributes()) {
+
+			if (a.isPrimaryKey()) {
+				primaryKeys.add((String) array[i]);
+			}
+			i++;
+		}
+
+		return primaryKeys;
+	}
+
+	public int find(ArrayList<String> list) {
+		right = countLines(entity.getRelation());
+		int place = 0;
+		for (int i = 0; i < list.size(); i++) {
+			place = binarySearch(left, right, list.get(i), i);
+		}
+		return place;
+	}
+
+	public int binarySearch(int l, int r, String x, int i) {
+		if (r >= l) {
+			int mid = l + (r - l) / 2;
+			int number = x.compareToIgnoreCase(getSplittedRow(getSpecificRow(mid,"relation"),"relation")[i]);
+			System.out.println("X je "+x);
+			System.out.println("Linija je "+getSplittedRow(getSpecificRow(mid,"relation"),"relation")[i]);
+			System.out.println("Number je "+number);
+
+			if (number == 0) {
+				left = l;
+				right = r;
+				return mid;
+			} else if (number > 0) {
+				return binarySearch(mid + 1, r, x, i);
+			} else {
+				return binarySearch(l, mid - 1, x, i);
+			}
+			// switch (number) {
+			// case 0:
+			// left = l;
+			// right = r;
+			// return mid;
+			// case 1:
+			// return binarySearch(mid + 1, r, x, i);
+			// case -1:
+			// return binarySearch(l, mid - 1, x, i);
+			// default:
+			// break;
+			// }
+
+		}
+
+		// We reach here when element is not present in array
+		return -1;
+	}
+
+}

@@ -1,0 +1,167 @@
+package files;
+
+import java.io.BufferedInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.PrintWriter;
+import java.io.RandomAccessFile;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.TreeSet;
+import java.util.stream.Stream;
+
+import model.Attribute;
+import model.Entity;
+
+public class SekFile extends InfAbstractFile implements InfFile {
+	private String path;
+	private RandomAccessFile raf;
+	private int left = 0;
+	private int right;
+	private int position;
+	private Entity entity;
+
+	public SekFile(String path, String headerName, boolean directory) {
+		// super(path, headerName, directory);
+	}
+
+	public SekFile() {
+
+	}
+
+	public void sort() {
+		TreeSet<String> treeSet = new TreeSet<String>();
+		for (int i = 0; i < countLines(); i++) {
+			treeSet.add(getSpecificRow(i));
+		}
+		Iterator<String> iterator = treeSet.iterator();
+		PrintWriter fw = null;
+		try {
+			fw = new PrintWriter(new File(path));
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		while (iterator.hasNext()) {
+
+			fw.println(iterator.next());
+
+		}
+		fw.close();
+
+	}
+
+	@Override
+	public void add() {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void change() {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void delete() {
+		// TODO Auto-generated method stub
+
+	}
+
+	public int binarySearch(int l, int r, String x, int i) {
+		if (r >= l) {
+			int mid = l + (r - l) / 2;
+
+			int number = x.compareToIgnoreCase(getSplittedRow(getSpecificRow(mid))[i]);
+
+			switch (number) {
+			case 0:
+				left = l;
+				right = r;
+				return mid;
+			case 1:
+				return binarySearch(mid + 1, r, x, i);
+			case -1:
+				return binarySearch(l, mid - 1, x, i);
+			default:
+				break;
+			}
+
+		}
+
+		// We reach here when element is not present in array
+		return -1;
+	}
+
+	public void setRaf(RandomAccessFile raf) {
+		this.raf = raf;
+		this.right = countLines();
+	}
+
+	public int countLines() {
+		InputStream is;
+		byte[] c = new byte[1024];
+		int count = 0;
+		int readChars = 0;
+		boolean empty = true;
+		try {
+			is = new BufferedInputStream(new FileInputStream(path));
+
+			while ((readChars = is.read(c)) != -1) {
+				empty = false;
+				for (int i = 0; i < readChars; ++i) {
+					if (c[i] == '\n') {
+						++count;
+					}
+				}
+			}
+			is.close();
+		} catch (IOException e) {
+
+		}
+		return (count == 0 && !empty) ? 1 : count;
+	}
+
+	public String[] getSplittedRow(String row) {
+
+		ArrayList<String> attributesInStrings = new ArrayList<>();
+		int start = 0;
+		int end = 0;
+		int i = 0;
+		String[] line = new String[entity.getAttributes().size()];
+		for (Attribute a : entity.getAttributes()) {
+			end += a.getLength();
+			line[i] = row.substring(start, end);
+			start = end;
+			i++;
+		}
+		return line;
+
+	}
+
+	private String getSpecificRow(int row) {
+		Stream<String> lines;
+		String line = null;
+		try {
+			lines = Files.lines(Paths.get(path), Charset.forName("ISO-8859-1"));
+			line = lines.skip(row).findFirst().get();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return line;
+	}
+
+	@Override
+	public void sort(ArrayList<String> string, ArrayList<Integer> integer) {
+		// TODO Auto-generated method stub
+		
+	}
+
+}
